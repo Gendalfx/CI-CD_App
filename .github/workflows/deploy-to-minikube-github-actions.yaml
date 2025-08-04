@@ -29,3 +29,12 @@ jobs:
       run: |
         minikube service list
         minikube service nodejs-app --url
+
+- name: Check pods status
+  run: kubectl get pods -o wide
+
+- name: Get logs from pod
+  run: |
+    POD_NAME=$(kubectl get pods -l app=nodejs-app -o jsonpath="{.items[0].metadata.name}")
+    echo "Pod name: $POD_NAME"
+    kubectl logs $POD_NAME
