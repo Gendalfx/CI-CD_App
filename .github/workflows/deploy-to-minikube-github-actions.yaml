@@ -30,7 +30,7 @@ jobs:
         minikube service list
         minikube service nodejs-app --url
 
-- name: Check pods status
+- name: Get pods -o wide
   run: kubectl get pods -o wide
 
 - name: Get logs from pod
